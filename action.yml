@@ -56,7 +56,7 @@ inputs:
   tag:
     description: 'An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).'
     required: false
-    default: ${{ github.ref_name }}
+    default: ${{ github.ref_name }}--${{ github.sha }}
   bodyfile:
     description: 'An optional body file for the release. This should be the path to the file'
     required: false
@@ -104,3 +104,4 @@ runs:
         token: ${{ inputs.token }}
         bodyFile: ${{ inputs.bodyfile }}
         tag: ${{ inputs.tag }}
+        allowUpdates: true
