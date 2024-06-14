@@ -23,7 +23,7 @@ Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.
   | `dist`        | `./dist` | no |Path of your `requirements.txt` file
   | `python_version`       | 3.9 | no  | Specific python version you want to use
   | `pyinstaller_version`  | 6.7 | no  | Specific pyinstaller version you want to use <br>*(with proper signs, like `5.13.2`)*
-  | `exe_name`            | `main`| no | executable upload to artifact and release with this name.
+  | `exe_name`            | `main`| no | executable upload to artifact and release with this name. DO NOT MAKE SPACE BETWEEN WORDS, use `_` i.e. `my_executable`
   | `use-dependencies`| `true` | no   | Whether to install `requirements.txt`
   | `no-console`      | true  | no   | whether to disappear console terminal. If true, console won't be displayed
   | `icon`      | NONE  | no   | Add the icon mark into your executable, the file path of your ico, e.g. logo.png or logo.ico'
