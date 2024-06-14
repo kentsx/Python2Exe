@@ -1,4 +1,4 @@
-name: Python2Exe
+name: Python Executable Builder Action
 author: '@kentsx'
 description: Package python scripts into executables for different OS's, and upload to release / b2
 branding: 
