@@ -89,7 +89,7 @@ runs:
 
     - name: (Upload) Executable to artifact
       id: artifact_upload
-      if: inputs.artifact
+      if: ${{ inputs.artifact }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ inputs.exe_name }}
@@ -97,7 +97,7 @@ runs:
         compression-level: ${{ inputs.compression_level }}
     
     - name: (Create) Release
-      if: inputs.release
+      if: ${{ inputs.release }}
       uses: ncipollo/release-action@v1.14.0
       with:
         artifacts: "${{ inputs.dist }}/*.exe" 
