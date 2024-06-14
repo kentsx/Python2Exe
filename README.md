@@ -1,5 +1,8 @@
 # Python2Exe
-An action to pyinstaller and version update
+An action to pyinstaller and release/artifact
+
+[中文说明](https://github.com/kentsx/Python2Exe/blob/main/README-zh.md)|[ENGLISH](https://github.com/kentsx/Python2Exe/blob/main/README.md)
+---
 
 ### Introduction
 Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.com/sayyid5416/pyinstaller), [@eric2788](https://github.com/eric2788/pyinstaller-build) and [@ncipollo](https://github.com/ncipollo/release-action)
@@ -20,7 +23,7 @@ Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.
   | Input                 | Default <br> _(`-` = empty string)_  | Required |Description 
   |-----------------------|:--------:|:--------:|-------------
   | `main`   |         | yes |Path of your `.py`, without`.py`
-  | `dist`        | `./dist` | no |Path of your `requirements.txt` file
+  | `dist`        | `./dist` | no |Path of your executable file
   | `python_version`       | 3.9 | no  | Specific python version you want to use
   | `pyinstaller_version`  | 6.7 | no  | Specific pyinstaller version you want to use <br>*(with proper signs, like `5.13.2`)*
   | `exe_name`            | `main`| no | executable upload to artifact and release with this name. DO NOT MAKE SPACE BETWEEN WORDS, use `_` i.e. `my_executable`
