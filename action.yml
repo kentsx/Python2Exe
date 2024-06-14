@@ -72,6 +72,9 @@ runs:
         python-version: ${{ inputs.python_version }}
         cache: 'pip'
 
+    - name: (Checkout) repository
+      uses: actions/checkout@v4
+
     - name: (Build) exe with pyinstaller
       shell: bash
       run: |
