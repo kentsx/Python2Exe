@@ -30,7 +30,7 @@ inputs:
     required: false
     default: true
   no-console:
-    description: 'whether to disppear console terminal'
+    description: 'whether to disappear console terminal'
     required: false
     default: true
   icon:
