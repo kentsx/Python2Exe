@@ -80,6 +80,7 @@ runs:
       run: |
         python -m pip install --upgrade pip 
         ${{ inputs.use-dependencies }} && pip install -r requirements.txt
+        [ ${{ inputs.icon }} != "NONE" ] && pip install Pillow
         ${{ inputs.no-console }} && NO_CONSOLE=--noconsole
         [ ${{ inputs.icon }} != "NONE" ] && ICON=--icon=${{ inputs.icon }}
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
