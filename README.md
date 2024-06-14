@@ -42,7 +42,7 @@ jobs:
     runs-on: <windows-latest / ubuntu-latest / ..... etc>
     steps:
       - name: Build and Release
-        uses: kentsx/Python2Exe@main
+        uses: kentsx/Python2Exe@v1.0.0
         with:
           main: main
           exe_name: 'My Executable'
