@@ -39,6 +39,11 @@
   | `bodyfile`   | `-`    | 否 | release的正文部分。需要为一个文件路径, 如 `body.MD`. 默认则是将commit信息作为正文部分
   | `version_file_path`   | `-`    | 否 | 版本信息文件路径，必须为`.py`文件，如`version.py`或`/path/to/file.py`
 
+### Available Outputs
+  | 输出参数                 |  说明
+  |-----------------------|-------------
+  | `version`   | 给定的version版本号
+
 ###  案例
 
 ```yaml
@@ -63,7 +68,6 @@ jobs:
           artifact: false
           release: true
           token: ${{ secrets.TOKEN }}
-          tag: ${{ github.ref_name }}
           bodyfile: 'readme.MD'
 ```
 ```py

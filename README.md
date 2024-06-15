@@ -39,6 +39,11 @@ Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.
   | `bodyfile`   | `-`    | no    | An optional body file for the release. This should be the path to the file, e.g. `body.MD`. The default will take commit message as release note.
   | `version_file_path`   | `-`    | no | path of version file, which has to be `.py` file, such as `version.py` or `/path/to/file.py`
 
+### Available Outputs
+  | Outputs                 |  Description
+  |-----------------------|-------------
+  | `version`   | The version executable version
+
 ###  Examples
 
 ```yaml
@@ -63,7 +68,6 @@ jobs:
           artifact: false
           release: true
           token: ${{ secrets.TOKEN }}
-          tag: ${{ github.ref_name }}
           bodyfile: 'readme.MD'
 ```
 
