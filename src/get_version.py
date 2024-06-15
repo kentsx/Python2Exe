@@ -3,6 +3,7 @@ from actions import *
 
 ## Version File Dir
 version_file = env('version_file_path')
+print(version_file)
 
 # version_file = 'D:/Coding/IBD-Tool/version.py'
 # Version File Name
@@ -11,7 +12,7 @@ version_file = env('version_file_path')
 
 
 # Load Module
-spec = importlib.util.spec_from_file_location('version',version_file)  # This version name seems no use
+spec = importlib.util.spec_from_file_location('version',version_file)  # This 'version' name seems no use
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 # print(type(module.VER))
