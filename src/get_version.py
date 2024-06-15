@@ -3,7 +3,8 @@ from actions import *
 import os
 
 ## Version File Dir
-version_file = env('version_file_path')
+# version_file = env('version_file_path')
+version_file = 'version.py'  #强制给一个路径
 print('This is a test string')
 print(version_file)
 print('END of test String')
