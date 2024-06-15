@@ -1,5 +1,5 @@
 # Python2Exe
-使用Pyinstaller以及生成release/artifact
+使用Pyinstaller以及生成release/artifact。
 
 [中文说明](https://github.com/kentsx/Python2Exe/blob/main/README-zh.md)|[ENGLISH](https://github.com/kentsx/Python2Exe/blob/main/README.md)
 ---
@@ -11,6 +11,7 @@
 - 设置Python环境，且带cache
 - 生成exe类文件并上传到artifact (可选), 默认【不上传】
 - 生成exe类文件并上发布release (可选), 默认【发布】
+- 根据version.py文件（文件名可不同）来调整release tag 版本号（可选），默认【不使用】，此版本文件中，必须包含一个变量`VER`，具体请见案例。
 
 ### 注意
 - 要使用这个action，即使你没有需要`pip install`非原生包，也要在repo根目录有`requirements.txt`文件。
@@ -36,16 +37,25 @@
   | `token`   | `${{ github.token }}`    | 否 | Github密钥， 确保你有发布release的权限
   | `tag`   | `${{ github.ref_name }}-Run#${{ github.run_id }}-Attempt#${{ github.run_attempt }}`    | no    | tag名称
   | `bodyfile`   | `-`    | 否 | release的正文部分。需要为一个文件路径, 如 `body.MD`. 默认则是将commit信息作为正文部分
+  | `version_file_path`   | `-`    | 否 | 版本信息文件路径，必须为`.py`文件，如`version.py`或`/path/to/file.py`
 
 ###  案例
 
 ```yaml
+# this is a example for action taking when version.py in main branch changed only.
+on: 
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'version.py'
+
 jobs:
   pyinstaller-build:
-    runs-on: <windows-latest / ubuntu-latest / ..... etc>
+    runs-on: windows-latest
     steps:
       - name: Build and Release
-        uses: kentsx/Python2Exe@v1.0.0
+        uses: kentsx/Python2Exe@v1.1.0
         with:
           main: main
           exe_name: 'My Executable'
@@ -55,4 +65,14 @@ jobs:
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.ref_name }}
           bodyfile: 'readme.MD'
+```
+```py
+# file_name: version.py; also can be other names
+# file_path: root or your directory
+
+# must have variable:
+VER = 'v1.*.*'
+
+# you can have other content in this files
+
 ```

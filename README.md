@@ -11,6 +11,7 @@ Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.
 - Setup Python with cache
 - Create artifact and upload executable (optinal), by default, executable will not be upload to artifact
 - Create release with executable (optional), by default, a release will be made.
+- According to `version.py` file（can be other file names）to change release tags (optional), by default, no version control. P.S. in this `version.py`，a variable named `VER` is mandatory，referring to examples.
 
 ### Attention
 - Before use the action, you must have a `requirements.txt` file in repo root, even if you don't have packages to `pip install`.
@@ -36,16 +37,25 @@ Mainly for personal usage, and greatly inspired by [@sayyid5416](https://github.
   | `token`   | `${{ github.token }}`    | no    | The Github token. Make sure you have the permission to create release.
   | `tag`   | `${{ github.ref_name }}-Run#${{ github.run_id }}-Attempt#${{ github.run_attempt }}`    | no    | An optional tag for the release.
   | `bodyfile`   | `-`    | no    | An optional body file for the release. This should be the path to the file, e.g. `body.MD`. The default will take commit message as release note.
+  | `version_file_path`   | `-`    | no | path of version file, which has to be `.py` file, such as `version.py` or `/path/to/file.py`
 
 ###  Examples
 
 ```yaml
+# this is a example for action taking when version.py in main branch changed only.
+on: 
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'version.py'
+
 jobs:
   pyinstaller-build:
-    runs-on: <windows-latest / ubuntu-latest / ..... etc>
+    runs-on: windows-latest
     steps:
       - name: Build and Release
-        uses: kentsx/Python2Exe@v1.0.0
+        uses: kentsx/Python2Exe@v1.1.0
         with:
           main: main
           exe_name: 'My Executable'
@@ -55,4 +65,15 @@ jobs:
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.ref_name }}
           bodyfile: 'readme.MD'
+```
+
+```py
+# file_name: version.py; also can be other names
+# file_path: root or your directory
+
+# must have variable:
+VER = 'v1.*.*'
+
+# you can have other content in this files
+
 ```
