@@ -61,6 +61,10 @@ inputs:
     description: 'An optional body file for the release. This should be the path to the file'
     required: false
     default: ''
+  version_file_path: 
+    description: 'The path of your version.py file (file name can be different). It must contains a variable "VER"'
+    required: false
+    default: ''
 
 
 runs:
@@ -74,6 +78,14 @@ runs:
       with:
         python-version: ${{ inputs.python_version }}
         cache: 'pip'
+
+    - name: (Check) for version
+      id: version
+      if: ${{ inputs.version_file_path != '' }}
+      shell: bash
+      run: python "${{ github.action_path }}/src/get_version.py"
+      env:
+        version_file_path: ${{ inputs.version_file_path }}
 
     - name: (Build) exe with pyinstaller
       shell: bash
@@ -97,11 +109,21 @@ runs:
         compression-level: ${{ inputs.compression_level }}
     
     - name: (Create) Release
-      if: ${{ inputs.release == 'true' }}
+      if: ${{ inputs.release == 'true' && inputs.version_file_path == '' }}
       uses: ncipollo/release-action@v1.14.0
       with:
         artifacts: "${{ inputs.dist }}/*.exe" 
         token: ${{ inputs.token }}
         bodyFile: ${{ inputs.bodyfile }}
         tag: ${{ inputs.tag }}
+        allowUpdates: true
+
+    - name: (Create) Release
+      if: ${{ inputs.release == 'true' && inputs.version_file_path != '' }}
+      uses: ncipollo/release-action@v1.14.0
+      with:
+        artifacts: "${{ inputs.dist }}/*.exe" 
+        token: ${{ inputs.token }}
+        bodyFile: ${{ inputs.bodyfile }}
+        tag: ${{ steps.version.outputs.version }}
         allowUpdates: true
