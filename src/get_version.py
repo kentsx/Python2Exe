@@ -16,7 +16,7 @@ spec = importlib.util.spec_from_file_location('version',version_file)  # This 'v
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 print(module.VER)
-# set_output('version', module.VER)
+set_output('version', module.VER)
 
 
 """
