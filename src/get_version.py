@@ -5,7 +5,9 @@ import os
 ## Version File Dir
 # version_file = env('version_file_path')
 version_file = 'version.py'  #强制给一个路径
-print(os.environ.keys())
+print('='*30)
+print(os.environ.get('VERSION_FILE_PATH'))
+print(os.environ.get('INPUTS'))
 print('='*30)
 print(version_file)
 print('='*30)
