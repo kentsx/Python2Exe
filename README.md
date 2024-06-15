@@ -60,7 +60,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build and Release
-        uses: kentsx/Python2Exe@v1.1.0
+        uses: kentsx/Python2Exe@v1.1.1
         with:
           main: main
           exe_name: 'My Executable'
