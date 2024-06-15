@@ -84,6 +84,8 @@ runs:
       if: ${{ inputs.version_file_path != '' }}
       shell: bash
       run: python "${{ github.action_path }}/src/get_version.py"
+      env:
+        version_file_path: ${{ inputs.version_file_path }}
 
     - name: (Build) exe with pyinstaller
       shell: bash
